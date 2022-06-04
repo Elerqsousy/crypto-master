@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { v4 as uuid } from 'uuid';
 import searchIcon from '../../assets/searchIcon.png';
-import ClicableElement from '../Clicable/Clicable';
+import ClicableElement from '../Clicable';
 
 const SearchBar = () => {
   const Data = [];
