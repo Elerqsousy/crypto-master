@@ -6,12 +6,12 @@ const routLinks = [
   {
     path: '/',
     text: 'Home',
-    img: Home,
+    img: <Home />,
   },
   {
     path: '/favourites',
     text: 'Favourites',
-    img: Favorites,
+    img: <Favorites />,
   },
   {
     path: '/trending100',
