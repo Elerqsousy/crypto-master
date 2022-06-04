@@ -5,10 +5,10 @@ This project is a mobile and web compatible app for cryptocurrency enthusiasts, 
 
 ## Screensot
 
-![screenshot](./Screenshot1.png)
-![screenshot](./Screenshot2.png)
-![screenshot](./Screenshot3.png)
-![screenshot](./Screenshot4.png)
+![screenshot](./RMScreenShoots/Screenshot1.png)
+![screenshot](./RMScreenShoots/Screenshot2.png)
+![screenshot](./RMScreenShoots/Screenshot3.png)
+![screenshot](./RMScreenShoots/Screenshot4.png)
 
 
 ## Built With
@@ -85,6 +85,11 @@ You don't have to ever use `eject`. The curated feature set is suitable for smal
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+## Acknowledgements
+
+The [original adapted](https://www.behance.net/gallery/31579789/Ballhead-App-(Free-PSDs)) design was created by [Nelson Sakwa](https://www.behance.net/sakwadesignstudio). 
+Copyrights: under [licence](https://creativecommons.org/licenses/by-nc/4.0/) (CC BY-NC 4.0)
 
 ## 📝 License
 

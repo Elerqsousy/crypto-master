@@ -20,7 +20,7 @@ export default function Nav() {
           {routLinks.map((rout) => (
             <li key={uuid()} className={styles.navLink}>
               <NavLink to={rout.path}>
-                {window.innerWidth < 768 ? rout.img : rout.text}
+                {rout.img}
               </NavLink>
             </li>
           ))}
