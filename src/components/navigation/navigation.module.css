@@ -1,0 +1,54 @@
+.logo {
+  width: auto;
+  height: 40px;
+  margin: 5px 0 5px 20px;
+}
+
+.navLink svg {
+  width: 25px;
+  height: 30px;
+  color: #f4d504;
+}
+
+.navLink img {
+  width: 36px;
+  height: 36px;
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background-color: #4369b2;
+}
+
+.searchIcon {
+  width: 20px !important;
+  height: 18px !important;
+}
+
+.navLink {
+  margin-right: 20px;
+}
+
+.SearchBarContainer {
+  display: flex;
+  align-items: center;
+}
+
+.searchInput {
+  border: 1px solid #f4d504;
+  border-radius: 8px;
+  padding: 3px 5px;
+  margin-right: 20px;
+}
+
+.searchInput::placeholder {
+  color: white;
+}

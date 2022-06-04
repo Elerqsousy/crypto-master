@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import { configureStore } from '@reduxjs/toolkit';
 import logger from 'redux-logger';
 import main from './mainSlice';
-import trending100 from './favouritsSlice';
+import trending100 from './trending100';
 
 const rootReducer = combineReducers({
   main, trending100,

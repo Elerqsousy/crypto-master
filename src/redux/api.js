@@ -10,15 +10,12 @@ const api = {};
 api.fetchTrending = createAsyncThunk('main/fetchTrending', async () => {
   const apiCall = await axios
     .get(`${baseURL}search/trending`)
-    .then((response) => {
-      console.log(response.data.coins);
-      return dataFilter(
-        response.data.coins,
-        ['CoinId', 'id', 'name', 'img', 'price', 'altName', 'symbol'],
-        ['coin_id', 'id', 'name', 'large', 'price_btc', 'slug', 'symbol'],
-        'item',
-      );
-    });
+    .then((response) => dataFilter(
+      response.data.coins,
+      ['CoinId', 'id', 'name', 'img', 'price', 'altName', 'symbol'],
+      ['coin_id', 'id', 'name', 'large', 'price_btc', 'slug', 'symbol'],
+      'item',
+    ));
   local.setToLocal(apiCall, 'trending');
   return apiCall;
 });
@@ -28,13 +25,11 @@ api.fetchTrending100 = createAsyncThunk('trending100/fetchTrending100', async (a
   const apiCall = await axios
     .get(`${baseURL}coins/markets?vs_currency=usd&ids=${stringOfIds}&order=market_cap_desc&per_page=100&page=1&sparkline=false`)
     .then((response) => {
-      console.log(response);
       const finalData = dataFilter(
         response.data,
         ['ChangePercent', 'id', 'name', 'img', 'price', 'rank', 'symbol', 'lastUpdated'],
         ['price_change_percentage_24h', 'id', 'name', 'image', 'current_price', 'market_cap_rank', 'symbol', 'last_updated'],
       );
-      console.log('trending100', finalData);
 
       return finalData;
     });
@@ -45,7 +40,6 @@ api.fetchSingleCoin = createAsyncThunk('main/fetchSingleCoin', async (coinId) =>
   const apiCall = await axios
     .get(`${baseURL}coins/${coinId}?localization=false&tickers=false&market_data=true&community_data=false&developer_data=false&sparkline=true`)
     .then((response) => {
-      console.log(response.data);
       const filteredData = {
         description: response.data.description,
         id: response.data.id,
@@ -56,7 +50,6 @@ api.fetchSingleCoin = createAsyncThunk('main/fetchSingleCoin', async (coinId) =>
         symbol: response.data.symbol,
         lastUpdated: response.data.last_updated,
       };
-      console.log(filteredData.marketData);
       const { marketData } = filteredData;
       const filteredMarketData = {
         currentPrice: marketData.current_price.usd,
@@ -64,7 +57,6 @@ api.fetchSingleCoin = createAsyncThunk('main/fetchSingleCoin', async (coinId) =>
         ChnagePercentage: marketData.price_change_percentage_24h,
       };
       const finalData = { ...filteredData, ...filteredMarketData, marketData: '' };
-      console.log(finalData);
       return finalData;
     });
   return apiCall;

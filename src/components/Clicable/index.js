@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const ClicableElement = ({ child, click, keyDown }) => (
-  <button onClick={click} onKeyDown={keyDown} type="button">
+  <button onClick={click} onKeyDown={keyDown} type="button" style={{ cursor: 'pointer', padding: 0 }}>
     {child}
   </button>
 );

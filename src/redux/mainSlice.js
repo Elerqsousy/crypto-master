@@ -15,7 +15,6 @@ const mainSlice = createSlice({
         favourites: [...newlist],
       };
       local.setToLocal(newlist, 'favourites');
-      local.setToLocal(newState);
       return newState;
     },
     setFavourite(state, action) {
@@ -25,7 +24,6 @@ const mainSlice = createSlice({
         favourites: [...newlist],
       };
       local.setToLocal(newlist, 'favourites');
-      local.setToLocal(newState);
       return newState;
     },
     resetSingleCoin(state, action) {

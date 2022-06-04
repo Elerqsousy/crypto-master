@@ -2,39 +2,38 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { IoIosArrowBack } from 'react-icons/io';
+import { v4 as uuid } from 'uuid';
 import api from '../../redux/api';
-import updateOnLoad100 from '../../components/onload/onLoad';
 import Trending100Card from '../../components/trending100Card';
+import styles from '../index.module.css';
+import ClicableElement from '../../components/Clicable';
 
-// {favourites,singleCoin,trendingList}
 const Trending100 = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { favourites } = useSelector(
-    (state) => state.main,
-  );
-
   const { list } = useSelector((state) => state.trending100);
 
   useEffect(() => {
-    updateOnLoad100(favourites, 'favourites', '', 'getFavourites');
+    dispatch(api.fetchTrending100([]));
   }, []);
 
-  useEffect(() => {
-    dispatch(api.fetchTrending100(favourites));
-  }, [favourites.length]);
-
   return (
-    <section>
+    <section className={styles.mainContainer}>
+      <ClicableElement
+        child={(
+          <div className={styles.goBack}>
+            <IoIosArrowBack />
+            <span>Go Back</span>
+          </div>
+        )}
+        click={() => navigate(-1)}
+      />
+      <h1>Trending 100 Coins</h1>
       <div>
-        <IoIosArrowBack onClick={() => navigate(-1)} />
-        <h1>Favourites List</h1>
-      </div>
-      <div>
-        {list.map((item) => (
+        {list.map((item, id = uuid()) => (
           <Trending100Card
-            key={item.CoinId}
+            key={id}
             coinObject={item}
           />
         ))}
