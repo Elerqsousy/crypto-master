@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import api from '../../redux/api';
+import styles from '../card/card.module.css';
 
 const Trending100Card = ({
   coinObject,
@@ -14,18 +15,20 @@ const Trending100Card = ({
 
   return (
     <article>
-      <div>
+      <div className={styles.imgContainer}>
         <img src={img} alt={`${name} logo`} />
       </div>
       <div>
-        <div>
-          <div>
-            <Link to={`/${id}`} onClick={() => { dispatch(api.fetchSingleCoin(id)); }}>
-              <h3>{name}</h3>
-            </Link>
-          </div>
-          <div>
-            <span>{rank}</span>
+        <div className={`${styles.cardMainInfo} ${styles.favCard}`}>
+          <Link to={`/${id}`} onClick={() => { dispatch(api.fetchSingleCoin(id)); }}>
+            <h3 className={styles.cardHeader}>{name}</h3>
+          </Link>
+          <div className={styles.generalInfo}>
+            <span>
+              #
+              {' '}
+              {rank}
+            </span>
             <span>{ChangePercent}</span>
           </div>
         </div>
@@ -33,10 +36,12 @@ const Trending100Card = ({
           $
           {price}
         </span>
+        <div>
+          <span>
+            {lastUpdated}
+          </span>
+        </div>
       </div>
-      <span>
-        {lastUpdated}
-      </span>
     </article>
   );
 };
@@ -50,8 +55,8 @@ Trending100Card.propTypes = {
     name: PropTypes.string.isRequired,
     img: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
-    ChangePercent: PropTypes.string.isRequired,
-    rank: PropTypes.string.isRequired,
+    ChangePercent: PropTypes.number.isRequired,
+    rank: PropTypes.number.isRequired,
     lastUpdated: PropTypes.string.isRequired,
   }).isRequired,
 };

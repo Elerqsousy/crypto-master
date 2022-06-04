@@ -1,16 +1,13 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-// import { useNavigate } from 'react-router-dom';
-// import { IoIosArrowBack } from 'react-icons/io';
 import updateOnLoad from '../../components/onload/onLoad';
 import Card from '../../components/card';
+import styles from '../index.module.css';
 
-// {favourites,singleCoin,trendingList}
 const Home = () => {
   const { favourites, trendingList } = useSelector(
     (state) => state.main,
   );
-  // const navigate = useNavigate();
 
   useEffect(() => {
     updateOnLoad(trendingList, 'trending', 'fetchTrending', 'getTrending');
@@ -18,9 +15,8 @@ const Home = () => {
   }, []);
 
   return (
-    <section>
-      {/* <IoIosArrowBack onClick={() => navigate(-1)} /> */}
-      <h1>Trending List</h1>
+    <section className={styles.mainContainer}>
+      <h1>Rising Coins</h1>
       <div>
         {trendingList.map((item) => (
           <Card

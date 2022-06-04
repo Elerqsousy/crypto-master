@@ -1,11 +1,11 @@
-import {
-  MdFavorite,
-  MdFavoriteBorder,
-} from 'react-icons/md';
+import { MdFavorite, MdFavoriteBorder } from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { IoIosArrowBack } from 'react-icons/io';
+import { useEffect } from 'react';
 import { deleteFavourite, setFavourite } from '../../redux/mainSlice';
+import styles from '../index.module.css';
+import ClicableElement from '../../components/Clicable';
 
 const Details = () => {
   const navigate = useNavigate();
@@ -19,49 +19,63 @@ const Details = () => {
     name,
     img,
     links,
-    lastUpdaed,
     ChnagePercentage,
     currentPrice,
-    priceArray,
   } = singleCoin;
 
-  const isFavourite = favourites.filter((item) => item === id).length ? (
-    <MdFavorite onClick={() => dispatch(deleteFavourite(id))} />
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
+
+  const viewedData = singleCoin ? (
+    <article className={`${styles.mainContainer} ${styles.customArticle}`}>
+      <div className={styles.detailsHeader}>
+        <img src={img?.large} alt={`${name} logo`} />
+        <div className={styles.headerDetialsContainer}>
+          <div className={styles.likeContainer}>
+            <ClicableElement child={<h1 className={styles.header}>{name}</h1>} click={() => window.open(links?.homepage[0], '_blank').focus()} />
+            {favourites.filter((item) => item === id).length ? (
+              <MdFavorite
+                onClick={() => dispatch(deleteFavourite(id))}
+                className={styles.favouritIcon}
+              />
+            ) : (
+              <MdFavoriteBorder onClick={() => dispatch(setFavourite(id))} />
+            )}
+          </div>
+          <div className={styles.percentContainer}>
+            <span>
+              $
+              {currentPrice}
+            </span>
+            <span>
+              Last 24hrs
+              {' '}
+              {Number(ChnagePercentage).toFixed(2)}
+              {' '}
+              %
+            </span>
+          </div>
+        </div>
+      </div>
+      <div className={styles.detailsDetails}>{description?.en}</div>
+    </article>
   ) : (
-    <MdFavoriteBorder onClick={() => dispatch(setFavourite(id))} />
+    ''
   );
 
   return (
-    <section>
-      <IoIosArrowBack onClick={() => navigate(-1)} />
-      {console.log(name, priceArray)}
-      <article>
-        <div>
-          <img src={img?.large} alt={`${name} logo`} />
-          <div>
-            <div>
-              <Link to={links?.homepage} onClick={() => window.open(links?.homepage, '_blank').focus()}>
-                <h1>{name}</h1>
-              </Link>
-              {isFavourite}
-            </div>
-            <div>
-              <span>
-                $
-                {currentPrice}
-              </span>
-              <span>
-                {Number(ChnagePercentage).toFixed(2)}
-                %
-              </span>
-            </div>
+    <section className={styles.mainContainer}>
+      <ClicableElement
+        child={(
+          <div className={styles.goBack}>
+            <IoIosArrowBack />
+            <span>Go Back</span>
           </div>
-        </div>
-        <p>{description?.en}</p>
-        <div>
-          <span>{lastUpdaed}</span>
-        </div>
-      </article>
+        )}
+        click={() => navigate(-1)}
+      />
+      {viewedData}
     </section>
   );
 };

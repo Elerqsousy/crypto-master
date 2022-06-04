@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { deleteFavourite, setFavourite } from '../../redux/mainSlice';
 import api from '../../redux/api';
+import styles from './card.module.css';
 
 const Card = ({
   coinObject,
@@ -27,14 +28,14 @@ const Card = ({
 
   return (
     <article>
-      <div>
+      <div className={styles.imgContainer}>
         <img src={img} alt={`${name} logo`} />
       </div>
       <div>
-        <div>
+        <div className={styles.cardMainInfo}>
           {isFavourite}
           <Link to={`/${id}`} onClick={() => { dispatch(api.fetchSingleCoin(id)); }}>
-            <h3>{name}</h3>
+            <h3 className={styles.cardHeader}>{name}</h3>
           </Link>
         </div>
         <span>
