@@ -3,9 +3,13 @@
 # Crypto Master
 This project is a mobile and web compatible app for cryptocurrency enthusiasts, where they can access, view, and compare up-to-date information about all sorts of cryptocurrencies. Their is a dedicated profile page for viewing and customizing personal and security options and data, and more importantly have access to their pre assigned favourites and saves.
 
-<!-- ## Screensot
+## Screensot
 
-![screenshot](./screenshotRockets.png) -->
+![screenshot](./Screenshot1.png)
+![screenshot](./Screenshot2.png)
+![screenshot](./Screenshot3.png)
+![screenshot](./Screenshot4.png)
+
 
 ## Built With
 
