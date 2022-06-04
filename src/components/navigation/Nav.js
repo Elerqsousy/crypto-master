@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
 import logo from '../../assets/colored-logo.png';
 import routLinks from './NavRoutes';
@@ -8,9 +8,9 @@ import SearchBar from './SearchBar';
 export default function Nav() {
   return (
     <header className="header" style={{ display: 'flex' }}>
-      <div className="left-nav">
+      <Link to="/">
         <img src={logo} alt="logo" />
-      </div>
+      </Link>
       <nav className="right-nav">
         <ul className="nav-links">
           <li className="nav-link">

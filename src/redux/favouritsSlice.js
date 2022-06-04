@@ -1,28 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit';
 import api from './api';
-import local from './local';
 
-const mainSlice = createSlice({
-  name: 'favourite',
-  initialState: { status: 'none', favouriteList: [] },
+const trending100 = createSlice({
+  name: 'trending100',
+  initialState: { status: 'none', list: [] },
   extraReducers: {
-    [api.fetchFavourites.pending]: (state) => ({ ...state, status: 'loading' }),
-    [api.fetchFavourites.fulfilled]: (state, action) => ({
+    [api.fetchTrending100.pending]: (state) => ({ ...state, status: 'loading' }),
+    [api.fetchTrending100.fulfilled]: (state, action) => ({
       ...state,
-      favouriteList: action.payload,
+      list: action.payload,
       status: 'idle',
     }),
-    [api.fetchFavourites.rejected]: (state) => ({ ...state, status: 'fail' }),
-    [local.getFavourites.pending]: (state) => ({ ...state, status: 'loading' }),
-    [local.getFavourites.fulfilled]: (state, action) => ({
-      ...state,
-      favouriteList: action.payload,
-      status: 'idle',
-    }),
-    [local.getFavourites.rejected]: (state) => ({ ...state, status: 'fail' }),
+    [api.fetchTrending100.rejected]: (state) => ({ ...state, status: 'fail' }),
   },
 });
 
-export const { toggleReservation } = mainSlice.actions;
+export const { toggleReservation } = trending100.actions;
 
-export default mainSlice.reducer;
+export default trending100.reducer;

@@ -1,6 +1,11 @@
 const dataFilter = (arr, ListOfKeys, listOfFilters, filterIfObject) => arr.map((record) => {
   const arrObj = ListOfKeys.map((key, index) => {
-    const item = typeof record === 'object' ? record[filterIfObject] : record;
+    console.log(record);
+    console.log(record[filterIfObject]);
+
+    const item = filterIfObject ? record[filterIfObject] : record;
+    console.log(item);
+
     return {
       [key]: item[listOfFilters[index]],
     };

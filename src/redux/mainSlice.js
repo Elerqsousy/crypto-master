@@ -9,20 +9,32 @@ const mainSlice = createSlice({
   },
   reducers: {
     deleteFavourite(state, action) {
-      const newlist = state.favourites.filter((item) => item.id === action.payload);
-      local.setToLocal(newlist, 'favourites');
-      return {
+      const newlist = state.favourites.filter((item) => item !== action.payload);
+      const newState = {
         ...state,
         favourites: [...newlist],
       };
+      local.setToLocal(newlist, 'favourites');
+      local.setToLocal(newState);
+      return newState;
     },
     setFavourite(state, action) {
       const newlist = [...state.favourites, action.payload];
-      local.setToLocal(newlist, 'favourites');
-      return {
+      const newState = {
         ...state,
         favourites: [...newlist],
       };
+      local.setToLocal(newlist, 'favourites');
+      local.setToLocal(newState);
+      return newState;
+    },
+    resetSingleCoin(state, action) {
+      const newState = {
+        ...state,
+        singleCoin: action.payload,
+      };
+      local.setToLocal(newState);
+      return newState;
     },
   },
   extraReducers: {
@@ -33,6 +45,7 @@ const mainSlice = createSlice({
       status: 'idle',
     }),
     [api.fetchTrending.rejected]: (state) => ({ ...state, status: 'fail' }),
+
     [local.getTrending.pending]: (state) => ({ ...state, status: 'loading' }),
     [local.getTrending.fulfilled]: (state, action) => ({
       ...state,
@@ -48,9 +61,17 @@ const mainSlice = createSlice({
       status: 'idle',
     }),
     [api.fetchSingleCoin.rejected]: (state) => ({ ...state, status: 'fail' }),
+
+    [local.getFavourites.pending]: (state) => ({ ...state, status: 'loading' }),
+    [local.getFavourites.fulfilled]: (state, action) => ({
+      ...state,
+      favourites: action.payload,
+      status: 'idle',
+    }),
+    [local.getFavourites.rejected]: (state) => ({ ...state, status: 'fail' }),
   },
 });
 
-export const { setFavourite, deleteFavourite } = mainSlice.actions;
+export const { setFavourite, deleteFavourite, resetSingleCoin } = mainSlice.actions;
 
 export default mainSlice.reducer;

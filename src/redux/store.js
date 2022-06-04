@@ -2,10 +2,10 @@ import { combineReducers } from 'redux';
 import { configureStore } from '@reduxjs/toolkit';
 import logger from 'redux-logger';
 import main from './mainSlice';
-import favourite from './favouritsSlice';
+import trending100 from './favouritsSlice';
 
 const rootReducer = combineReducers({
-  main, favourite,
+  main, trending100,
 });
 
 const store = configureStore({
