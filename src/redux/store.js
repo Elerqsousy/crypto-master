@@ -13,4 +13,11 @@ const store = configureStore({
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
 
+export function createTestStore() {
+  const store = configureStore({
+    reducer: rootReducer,
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
+  }); return store;
+}
+
 export default store;

@@ -30,7 +30,6 @@ api.fetchTrending100 = createAsyncThunk('trending100/fetchTrending100', async (a
         ['ChangePercent', 'id', 'name', 'img', 'price', 'rank', 'symbol', 'lastUpdated'],
         ['price_change_percentage_24h', 'id', 'name', 'image', 'current_price', 'market_cap_rank', 'symbol', 'last_updated'],
       );
-
       return finalData;
     });
   return apiCall;

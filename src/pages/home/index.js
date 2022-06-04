@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
 import updateOnLoad from '../../components/onload/onLoad';
 import Card from '../../components/card';
 import styles from '../index.module.css';
@@ -9,9 +9,13 @@ const Home = () => {
     (state) => state.main,
   );
 
-  useEffect(() => {
+  const onLoadList = () => {
     updateOnLoad(trendingList, 'trending', 'fetchTrending', 'getTrending');
     updateOnLoad(favourites, 'favourites', '', 'getFavourites');
+  };
+
+  useEffect(() => {
+    onLoadList();
   }, []);
 
   return (

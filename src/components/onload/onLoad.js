@@ -4,8 +4,9 @@ import local from '../../redux/local';
 import store from '../../redux/store';
 
 const updateOnLoad100 = (list, localName, apicall, localCall) => {
-  const currentDate = moment(new Date());
-  const localDateToDate = localStorage.getItem('date') ? moment(localStorage.getItem('date')).add(1, 'days') : 0;
+  const currentDate = moment();
+  const saved = JSON.parse(localStorage.getItem('date'));
+  const localDateToDate = localStorage.getItem('date') ? moment(saved).add(1, 'days') : 0;
 
   if (!list.length) {
     if (!localStorage.getItem(localName) || currentDate > localDateToDate) {
